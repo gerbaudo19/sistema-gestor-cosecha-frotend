@@ -94,3 +94,11 @@ export const isAdminAuthenticated = (): boolean => {
 export const isLotAuthenticated = (): boolean => {
   return !!getLotToken();
 };
+
+export const getAuthHeaders = (tokenType: 'admin' | 'lot' = 'lot'): HeadersInit => {
+  const token = tokenType === 'admin' ? getAdminToken() : getLotToken();
+  return {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+};
