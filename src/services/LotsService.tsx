@@ -13,7 +13,6 @@ export interface Lot {
 }
 
 export interface CreateLotDto {
-  code: string;
   name: string;
   cereal: string;
 }

@@ -58,7 +58,6 @@ export const AdminDashboard = () => {
 
   // Lot form state
   const [lotForm, setLotForm] = useState<CreateLotDto>({
-    code: '',
     name: '',
     cereal: '',
   });
@@ -104,7 +103,7 @@ export const AdminDashboard = () => {
     try {
       await createLot(lotForm);
       setSuccess('Lote creado correctamente');
-      setLotForm({ code: '', name: '', cereal: '' });
+      setLotForm({ name: '', cereal: '' });
       setActiveView('lots');
       await loadLots();
     } catch (err) {
@@ -121,14 +120,13 @@ export const AdminDashboard = () => {
     setError('');
     try {
       const updateData: UpdateLotDto = {};
-      if (lotForm.code !== selectedLot.code) updateData.code = lotForm.code;
       if (lotForm.name !== selectedLot.name) updateData.name = lotForm.name;
       if (lotForm.cereal !== selectedLot.cereal) updateData.cereal = lotForm.cereal;
 
       await updateLot(selectedLot._id, updateData);
       setSuccess('Lote actualizado correctamente');
       setSelectedLot(undefined);
-      setLotForm({ code: '', name: '', cereal: '' });
+      setLotForm({ name: '', cereal: '' });
       setActiveView('lots');
       await loadLots();
     } catch (err) {
@@ -234,7 +232,6 @@ export const AdminDashboard = () => {
   const handleEditLot = (lot: Lot) => {
     setSelectedLot(lot);
     setLotForm({
-      code: lot.code,
       name: lot.name,
       cereal: lot.cereal,
     });
@@ -243,7 +240,7 @@ export const AdminDashboard = () => {
 
   const handleNewLot = () => {
     setSelectedLot(undefined);
-    setLotForm({ code: '', name: '', cereal: '' });
+    setLotForm({ name: '', cereal: '' });
     setActiveView('lotForm');
   };
 
@@ -525,16 +522,6 @@ export const AdminDashboard = () => {
             >
               <div className="form-grid-2">
                 <FormInput
-                  label="Código"
-                  type="text"
-                  value={lotForm.code}
-                  onChange={(value) =>
-                    setLotForm((prev) => ({ ...prev, code: value }))
-                  }
-                  placeholder="Ej: LOT001"
-                  disabled={loading}
-                />
-                <FormInput
                   label="Nombre"
                   type="text"
                   value={lotForm.name}
@@ -567,7 +554,7 @@ export const AdminDashboard = () => {
                   type="button"
                   onClick={() => {
                     setSelectedLot(undefined);
-                    setLotForm({ code: '', name: '', cereal: '' });
+                    setLotForm({ name: '', cereal: '' });
                     setActiveView('lots');
                   }}
                   disabled={loading}
