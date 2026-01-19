@@ -106,3 +106,12 @@ export const searchRecords = async (filters: SearchFilters): Promise<RecordEntry
   });
   return handleResponse(response);
 };
+
+// Admin functions
+export const deleteRecordAsAdmin = async (id: string): Promise<{ message: string }> => {
+  const response = await fetch(`${API_BASE_URL}/records/${id}`, {
+    method: 'DELETE',
+    headers: getAuthHeaders('admin'),
+  });
+  return handleResponse(response);
+};
