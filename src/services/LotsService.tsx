@@ -98,8 +98,8 @@ export const listLots = async (params: LotsSearchParams = {}): Promise<LotsRespo
   if (params.code) searchParams.append('code', params.code);
   if (params.name) searchParams.append('name', params.name);
   if (params.cereal) searchParams.append('cereal', params.cereal);
-  if (params.page) searchParams.append('page', String(params.page));
-  if (params.limit) searchParams.append('limit', String(params.limit));
+  searchParams.append('page', String(params.page ?? 1));
+  searchParams.append('limit', String(params.limit ?? 10));
   if (params.sortBy) searchParams.append('sortBy', params.sortBy);
   if (params.order) searchParams.append('order', params.order);
   if (params.showDeleted) searchParams.append('showDeleted', String(params.showDeleted));
