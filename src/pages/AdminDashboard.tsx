@@ -8,14 +8,12 @@ import {
   LogOut,
   Plus,
   Search,
-  Download,
   History,
   Package,
   Users,
   FileSpreadsheet,
   Trash2,
   Edit2,
-  RefreshCw,
   CheckCircle,
   XCircle,
   ChevronLeft,
@@ -28,7 +26,7 @@ import {
   createLot,
   updateLot,
   deleteLot,
-  restoreLot,
+  //restoreLot,
   setActiveLot,
   type Lot,
   type CreateLotDto,
@@ -155,7 +153,7 @@ export const AdminDashboard = () => {
     }
   };
 
-  const handleRestoreLot = async (lot: Lot) => {
+  /*const handleRestoreLot = async (lot: Lot) => {
     setLoading(true);
     setError('');
     try {
@@ -167,7 +165,7 @@ export const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };*/
 
   const handleSetActiveLot = async (lot: Lot) => {
     if (!confirm(`¿Activar el lote "${lot.name}" como lote actual?`)) return;
